@@ -8,5 +8,5 @@
  */
 class CBPdoMssql extends CMssqlPdoAdapter
 {
-	use CBPdoWithNestedTransactions;
+	use TBPdoWithNestedTransactions;
 }

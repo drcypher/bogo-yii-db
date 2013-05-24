@@ -6,7 +6,7 @@
  * @package Components
  * @author Konstantinos Filios <konfilios@gmail.com>
  */
-trait CBPdoWithNestedTransactions
+trait TBPdoWithNestedTransactions
 {
 	/**
 	 * Transaction is still referenced but has been rolled back.

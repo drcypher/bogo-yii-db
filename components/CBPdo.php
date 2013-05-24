@@ -8,5 +8,5 @@
  */
 class CBPdo extends PDO
 {
-	use CBPdoWithNestedTransactions;
+	use TBPdoWithNestedTransactions;
 }
