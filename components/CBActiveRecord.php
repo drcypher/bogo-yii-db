@@ -6,7 +6,7 @@
  * @package Components
  * @author Konstantinos Filios <konfilios@gmail.com>
  */
-class CBActiveRecord extends CBActiveRecord
+class CBActiveRecord extends CActiveRecord
 {
 	/**
 	 * Utc datetime to datetime stamp.
