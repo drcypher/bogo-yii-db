@@ -9,6 +9,70 @@
 class CBActiveRecord extends CActiveRecord
 {
 	/**
+	 * Variation of CHtml::listData allowing array results.
+	 *
+	 * @param array $models Array of source models.
+	 * @param mixed $keyAttr Attribute to be used as key. If null, an array is returned instead of an assoc.
+	 * @param mixed $valueAttr Attribute to be used as value. If null, the model itself is used as is.
+	 * @return array
+	 */
+	static public function listData(array $models, $keyAttr = null, $valueAttr = null)
+	{
+		$values = array();
+
+		// Go through all models
+		foreach ($models as $model) {
+			// Retrieve value
+			$value = ($valueAttr === null) ? $model : self::value($model, $valueAttr);
+
+			if ($keyAttr === null) {
+				// Array mode (no key)
+				$values[] = $value;
+			} else {
+				// Assoc mode
+				$values[self::value($model, $keyAttr)] = $value;
+			}
+		}
+
+		return $values;
+	}
+
+	/**
+	 * Variation of CHtml::value retrieving model values.
+	 *
+	 * This variation does not accept default values and optimizes the isset conditions.
+	 *
+	 * @param mixed $model Source model
+	 * @param mixed $valueAttr
+	 * @return mixed
+	 */
+	public static function value($model, $valueAttr)
+	{
+		if (is_scalar($valueAttr)) {
+			foreach (explode('.', $valueAttr) as $valuAttrComponent) {
+				if (is_object($model)) {
+					if (!isset($model->$valuAttrComponent)) {
+						return null;
+					}
+					$model=$model->$valuAttrComponent;
+
+				} else if(is_array($model)) {
+					if (!isset($model[$valuAttrComponent])) {
+						return null;
+					}
+					$model=$model[$valuAttrComponent];
+				} else {
+					return null;
+				}
+			}
+		} else {
+			return call_user_func($valueAttr,$model);
+		}
+
+		return $model;
+	}
+
+	/**
 	 * Utc datetime to datetime stamp.
 	 *
 	 * @param integer $stamp
