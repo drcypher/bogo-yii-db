@@ -157,4 +157,21 @@ class CBActiveRecord extends CActiveRecord
 
 		return $this;
 	}
+
+	/**
+	 * Finds a single active record that has the specified attribute values.
+	 * See {@link find()} for detailed explanation about $condition and $params.
+	 * @param array $attributes list of attribute values (indexed by attribute names) that the active records should match.
+	 * An attribute value can be an array which will be used to generate an IN condition.
+	 * @param mixed $condition query condition or criteria.
+	 * @param array $params parameters to be bound to an SQL statement.
+	 * @return CBActiveRecord
+	 */
+	public function scopeByAttributes($attributes,$condition='',$params=array())
+	{
+		$prefix=$this->getTableAlias(true).'.';
+		$criteria=$this->getCommandBuilder()->createColumnCriteria($this->getTableSchema(),$attributes,$condition,$params,$prefix);
+		$this->getDbCriteria()->mergeWith($criteria);
+		return $this;
+	}
 }
