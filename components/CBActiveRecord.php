@@ -174,4 +174,20 @@ class CBActiveRecord extends CActiveRecord
 		$this->getDbCriteria()->mergeWith($criteria);
 		return $this;
 	}
+
+	/**
+	 * Execute current criteria in batches of given size.
+	 *
+	 * @param integer $batchSize
+	 * @param string $orderBy
+	 * @return CBActiveRecordBatchIterator
+	 */
+	public function findAllBatches($batchSize, $orderBy = null)
+	{
+		if ($orderBy !== null) {
+			$this->scopeOrderBy($orderBy);
+		}
+
+		return new CBActiveRecordBatchIterator($this, $batchSize);
+	}
 }
