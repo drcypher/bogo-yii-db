@@ -61,7 +61,12 @@ trait TBPdoWithNestedTransactions
 		if (!$this->isTransactionRolledBack) {
 			// We have not rolled back yet. Rollback now instead of waiting for
 			// refcount to reach 0 to avoid "leaks".
-			parent::rollBack();
+			// Try-and-catch is suggested in http://support.microsoft.com/kb/309335
+			try {
+				parent::rollBack();
+			} catch (Exception $e) {
+				// Gargara
+			}
 		}
 
 		// Mark as rolled back for as long as somebody is referencing this transaction
