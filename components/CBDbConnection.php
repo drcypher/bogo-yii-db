@@ -62,4 +62,21 @@ class CBDbConnection extends CDbConnection
 		return new $pdoClass($this->connectionString,$this->username,
 									$this->password,$this->attributes);
 	}
+
+	/**
+	 * Allow custom command factories.
+	 *
+	 * @param mixed $query
+	 * @return CDbCommand
+	 */
+	public function createCommand($query = null)
+	{
+		$commandFactory = $this->asa('commandFactory');
+
+		if ($commandFactory) {
+			return $commandFactory->createCommand($this, $query);
+		} else {
+			return parent::createCommand($query);
+		}
+	}
 }
