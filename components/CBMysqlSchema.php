@@ -31,6 +31,8 @@ class CBMysqlSchema extends CMysqlSchema
 		'uuidfk' => 'char(36)',
 		'datestamp' => 'datetime NOT NULL',
 		'mediumstring' => 'varchar(1022)',
+		'bigstring' => 'varchar(4000)',
+		'maxstring' => 'varchar(65535)',
 
 		// Extra primary key datatypes
 		'stringpk' => 'varchar(255) NOT NULL PRIMARY KEY',

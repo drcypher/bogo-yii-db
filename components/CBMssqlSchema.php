@@ -30,6 +30,8 @@ class CBMssqlSchema extends CMssqlSchema
 		'uuidfk' => 'uniqueidentifier',
 		'datestamp' => 'datetime NOT NULL DEFAULT (getutcdate())',
 		'mediumstring' => 'nvarchar(1022)',
+		'bigstring' => 'nvarchar(4000)',
+		'maxstring' => 'nvarchar(max)',
 
 		// Extra primary key datatypes
 		'stringpk' => 'nvarchar(255) PRIMARY KEY',
