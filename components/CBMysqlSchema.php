@@ -35,6 +35,7 @@ class CBMysqlSchema extends CMysqlSchema
 		'maxstring' => 'varchar(65535)',
 
 		// Extra primary key datatypes
+		'pk*' => 'int(11) NOT NULL PRIMARY KEY',
 		'stringpk' => 'varchar(255) NOT NULL PRIMARY KEY',
 		'tinypk' => 'tinyint NOT NULL AUTO_INCREMENT PRIMARY KEY',
 		'tinypk*' => 'tinyint NOT NULL PRIMARY KEY',

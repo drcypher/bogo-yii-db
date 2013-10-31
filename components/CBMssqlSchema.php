@@ -34,6 +34,7 @@ class CBMssqlSchema extends CMssqlSchema
 		'maxstring' => 'nvarchar(max)',
 
 		// Extra primary key datatypes
+		'pk*' => 'int PRIMARY KEY',
 		'stringpk' => 'nvarchar(255) PRIMARY KEY',
 		'tinypk' => 'tinyint IDENTITY PRIMARY KEY',
 		'tinypk*' => 'tinyint PRIMARY KEY',
